@@ -31,7 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({
           <div className="bg-blue-600 text-white w-8 h-8 flex items-center justify-center rounded">
             <span className="text-sm font-bold">HK</span>
           </div>
-          <span className="font-bold text-lg">H&K Brothers</span>
+          <span className="font-bold text-lg">H & K Brothers</span>
         </div>
 
         {/* Mobile Toggle */}
