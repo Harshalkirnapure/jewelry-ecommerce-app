@@ -29,9 +29,9 @@ const Navbar: React.FC<NavbarProps> = ({
       <div className="flex items-center space-x-4">
         <div className="flex items-center space-x-2">
           <div className="bg-blue-600 text-white w-8 h-8 flex items-center justify-center rounded">
-            <span className="text-sm font-bold">JK</span>
+            <span className="text-sm font-bold">HK</span>
           </div>
-          <span className="font-bold text-lg">J&K Brothers</span>
+          <span className="font-bold text-lg">H&K Brothers</span>
         </div>
 
         {/* Mobile Toggle */}
@@ -91,10 +91,10 @@ const Navbar: React.FC<NavbarProps> = ({
             <div className="absolute right-0 mt-[17px] flex w-[260px] flex-col rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark">
               <div>
                 <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
-                  jack jones
+                  Harshal Kirnapure
                 </span>
                 <span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">
-                  jack.jones@gmail.com
+                 harshalkirnapure2.@gmail.com
                 </span>
               </div>
 
