@@ -1,0 +1,11 @@
+# [START app_yaml]
+runtime: nodejs18
+
+service: jewellplus-client
+
+handlers:
+  - url: /.*
+    secure: always
+    script: auto
+
+# [END app_yaml]
