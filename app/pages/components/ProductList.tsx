@@ -1,21 +1,40 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import CartDrawer from "./CartDrawer";
+import Image from "next/image";
 
-const products = [
-  { id: 1, name: "Gold Necklace", image: "/Assets/Neclace.png", price: 1200, description: "Handcrafted gold necklace" },
-  { id: 2, name: "Silver Ring", image: "/Assets/Dimond Ring.png", price: 600, description: "Elegant silver ring" },
-  { id: 3, name: "Platinum Pendant", image: "/Assets/Platinum Pendant.png", price: 1200, description: "Handcrafted gold necklace" },
-  { id: 4, name: "Silver Anklet", image: "/Assets/Silver Anklet.png", price: 600, description: "Elegant silver ring" },
-];
+// const products = [
+//   { id: 1, name: "Gold Necklace", image: "/Assets/Neclace.png", price: 1200, description: "Handcrafted gold necklace" },
+//   { id: 2, name: "Silver Ring", image: "/Assets/Dimond Ring.png", price: 600, description: "Elegant silver ring" },
+//   { id: 3, name: "Platinum Pendant", image: "/Assets/Platinum Pendant.png", price: 1200, description: "Handcrafted gold necklace" },
+//   { id: 4, name: "Silver Anklet", image: "/Assets/Silver Anklet.png", price: 600, description: "Elegant silver ring" },
+// ];
 
 interface ProductListProps {
   setActiveItem: React.Dispatch<React.SetStateAction<string>>;
 }
 
+interface Product {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  description: string;
+}
+
 const ProductList: React.FC<ProductListProps> = ({ setActiveItem }) => {
+
+  
   const [cart, setCart] = useState<{ [key: number]: number }>({});
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
+  const [products, setProducts] = useState<Product[]>([]);
+  // const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+useEffect(() => {
+  fetch("http://localhost:4000/products")
+    .then((res) => res.json())
+        .then((data: Product[]) => setProducts(data));
+     }, []);
     
   const handleQuantityChange = (id: number, delta: number) => {
     setCart((prev) => ({
@@ -34,11 +53,13 @@ const ProductList: React.FC<ProductListProps> = ({ setActiveItem }) => {
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-        {products.map((product) => (
+        {products.map((product: Product) => (
           <div key={product.id} className="border rounded-lg p-4 hover:shadow-lg transition">
-            <img
+            <Image
               src={product.image}
               alt={product.name}
+              width={300}
+              height={300}
               className="w-full h-40 object-cover rounded cursor-pointer"
               onClick={() => setSelectedProduct(product)}
             />
@@ -64,7 +85,7 @@ const ProductList: React.FC<ProductListProps> = ({ setActiveItem }) => {
             >
               &times;
             </button>
-            <img src={selectedProduct.image} alt={selectedProduct.name} className="w-full h-48 object-cover rounded" />
+            <Image src={selectedProduct.image} width={300} height={300} alt={selectedProduct.name} className="w-full h-48 object-cover rounded" />
             <h2 className="text-xl font-bold mt-4">{selectedProduct.name}</h2>
             <p className="text-gray-700 mt-2">₹{selectedProduct.price}</p>
             <p className="text-gray-600 mt-2">{selectedProduct.description}</p>
