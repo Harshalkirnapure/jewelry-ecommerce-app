@@ -1,12 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 
+interface ShippingDetails {
+  firstName: string;
+  lastName: string;
+  address1: string;
+  address2?: string;
+  city: string;
+  state: string;
+  zip: string;
+  phone: string;
+}
+
+interface CartItem {
+  id: string | number;
+  name: string;
+  quantity: number;
+  price: number;
+}
+
+interface OrderData {
+  cartItems: CartItem[];
+  total: number;
+  shippingDetails: ShippingDetails;
+}
+
 export default function ThankYouPage() {
-  const [orderData, setOrderData] = useState<any>(null);
-  const router = useRouter();
+  const [orderData, setOrderData] = useState<OrderData | null>(null);
+  // const router = useRouter();
 
   useEffect(() => {
     const stored = localStorage.getItem("orderData");
@@ -45,7 +69,7 @@ export default function ThankYouPage() {
         <div>
           <h2 className="text-xl font-semibold text-gray-800 mb-2">Items Ordered</h2>
           <div className="divide-y divide-gray-200">
-            {cartItems.map((item: any) => (
+            {cartItems.map((item: CartItem) => (
               <div key={item.id} className="flex justify-between py-2 text-gray-700">
                 <span>{item.name} <span className="text-sm text-gray-500">(x{item.quantity})</span></span>
                 <span>₹{item.price * item.quantity}</span>

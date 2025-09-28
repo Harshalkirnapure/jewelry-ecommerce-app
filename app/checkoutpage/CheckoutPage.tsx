@@ -251,6 +251,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ setActiveItem }) => {
               <div key={item.id} className="flex justify-between items-center">
                 <div className="flex gap-4 items-center">
                   <Image
+                  width={48} height={48 }
                     src={item.image}
                     alt={item.name}
                     className="w-16 h-16 rounded object-cover"
