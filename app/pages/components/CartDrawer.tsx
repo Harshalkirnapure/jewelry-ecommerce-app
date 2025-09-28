@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface Product {
   id: number;
@@ -81,9 +82,11 @@ const CartDrawer: React.FC<CartDrawerProps> = ({
           return (
             <div key={id} className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <img
+                <Image
                   src={product.image}
                   alt={product.name}
+                  width={48}
+                  height={48}
                   className="w-12 h-12 object-cover rounded"
                 />
                 <div>

@@ -1,5 +1,6 @@
 // pages/product/[id].tsx
 import React from "react";
+import Image from "next/image";
 import { useRouter } from "next/router";
 
 const products = [
@@ -26,7 +27,7 @@ const ProductDetails = () => {
       >
         &times;
       </button>
-      <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded" />
+      <Image  width={48} height={48} src={product.image} alt={product.name} className="w-full h-48 object-cover rounded" />
       <h2 className="text-xl font-bold mt-4">{product.name}</h2>
       <p className="text-gray-700 mt-2">₹{product.price}</p>
       <p className="text-gray-600 mt-2">{product.description}</p>
